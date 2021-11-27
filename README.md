@@ -16,9 +16,9 @@ The following steps are only for _one_ of the group members to perform.
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
 2. Update the .env file with your correct local information 
-  - username: `labber` 
-  - password: `labber` 
-  - database: `midterm`
+  - Database username 
+  - Database password
+  - Database name
 3. Install dependencies: `npm i`
 4. Fix to binaries for sass: `npm rebuild node-sass`
 5. Reset database: `npm run db:reset`
