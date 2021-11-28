@@ -1,17 +1,17 @@
 <header>
   <nav class="navbar">
-    <p class="navbar-brand">Quiz App</p>
+    <p class="navbar-brand"><strong>Quiz App</strong></p>
     <div class="navbar-pages">
+      <form class="user" method="POST" action="/logout">
+        <p>Logged in as: username</p>
+        <button type="submit" class="logout-button">Logout</button>
+      </form>
+      <div class="login">
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      </div>
       <a href="/create">Create quiz</a>
       <a href="/prev">View quizes</a>
-        <form class="user" method="POST" action="/logout">
-          <p>Logged in as: username</p>
-          <button type="submit">Logout</button>
-        </form>
-        <div class="login">
-          <a href="/login">Login</a>
-          <a href="/register">Register</a>
-        </div>
     </div>
   </nav>
 </header>
