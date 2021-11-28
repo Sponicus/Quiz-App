@@ -1,0 +1,35 @@
+/*@use 'partial';*/
+
+#bootstrap-div {
+  padding: 0;
+}
+
+nav, .navbar-pages, .user, .login {
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background-color: yellowgreen;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-pages, .login {
+  align-items: center;
+}
+
+.navbar-pages {
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.logout-button {
+  color: white;
+  background-color: rgb(172, 2, 2);
+  padding: 0.2em 0 0.2em 0;
+  border-radius: 10px;
+}
