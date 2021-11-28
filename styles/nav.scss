@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-nav, .navbar-pages, .user, .login {
+nav, .navbar-pages, .user, .login, .my-quizzes {
   display: flex;
   flex-direction: column;
 }
@@ -30,7 +30,12 @@ nav {
   padding-bottom: 0;
 }
 
-.navbar-pages, .login {
+#hamburger {
+  border: none;
+  background-color: partial.$color-navbar;
+}
+
+.navbar-pages, .login, .my-quizzes {
   align-items: center;
 }
 

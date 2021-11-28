@@ -2,7 +2,7 @@
   <nav class="navbar">
     <div class="main-nav">
       <p class="navbar-brand"><strong>Quiz App</strong></p>
-      <span id="hamburger" class="fas fa-bars"></span>
+      <button id="hamburger" class="fas fa-bars"></button>
     </div>
     <div class="navbar-pages">
       <form class="user" method="POST" action="/logout">
@@ -13,8 +13,10 @@
         <a href="/login">Login</a>
         <a href="/register">Register</a>
       </div>
-      <a href="/create">Create quiz</a>
-      <a href="/prev">View quizzes</a>
+      <div class="my-quizzes">
+        <a href="/create">Create quiz</a>
+        <a href="/prev">View quizzes</a>
+      </div>
     </div>
   </nav>
 </header>
