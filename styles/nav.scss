@@ -17,6 +17,13 @@ nav {
   box-shadow: 0 2px partial.$color-shadow;
 }
 
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .navbar-brand {
   font-size:  1.15em;
   margin-bottom: 0;
@@ -28,6 +35,8 @@ nav {
 }
 
 .navbar-pages {
+  display: none;
+
   a {
     color: black;
     text-decoration: none;
