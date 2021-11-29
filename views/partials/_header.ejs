@@ -5,13 +5,15 @@
       <button id="hamburger" class="fas fa-bars"></button>
     </div>
     <div class="navbar-pages">
-      <form class="user" method="POST" action="/logout">
-        <p>Logged in as: username</p>
-        <button type="submit" class="logout-button">Logout</button>
-      </form>
-      <div class="login">
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
+      <div class="navbar-right">
+        <form class="user" method="POST" action="/logout">
+          <p>Logged in as: username</p>
+          <button type="submit" class="logout-button">Logout</button>
+        </form>
+        <div class="login">
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+        </div>
       </div>
       <div class="my-quizzes">
         <a href="/create">Create quiz</a>
