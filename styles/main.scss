@@ -1,0 +1,27 @@
+@use 'partial';
+
+main {
+  display: flex;
+  justify-content: center;
+  color: partial.$color-light-grey;
+}
+
+.public-quiz {
+  background-color: partial.$color-quiz-background;
+  margin: 1em 0.6em;
+  padding: 0.7em;
+  border: solid 1px;
+  border-radius: 10px;
+}
+
+.public-quiz-title {
+  font-weight: bold;
+  color: #D0ABFC;
+}
+
+// For desktop
+@media screen and (min-width: 1024px) {
+  .public-quiz-container {
+    width: 70%;
+  }
+}
