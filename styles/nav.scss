@@ -69,3 +69,45 @@ nav {
   padding: 0.2em 0 0.2em 0;
   border-radius: 10px;
 }
+
+// For tablets
+@media screen and (min-width: 768px) {
+  nav, .navbar-pages, .user, .login, .my-quizzes, .navbar-right {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .navbar-pages {
+    justify-content: space-between;
+    width: 100%;
+
+    a {
+      padding: 0 1em 0 1em;
+    }
+  }
+
+  #hamburger {
+    display: none;
+  }
+
+  .navbar-right {
+    order: 2;
+  }
+
+  .user {
+    align-items: center;
+
+    p {
+      margin: 0 10px 0 10px;
+    }
+  }
+
+  .logout-button {
+    padding: 0.05em 0.5em 0.05em 0.5em;
+  }
+ }
+
+ // For desktop
+ @media screen and (min-width: 1024px) {
+
+ }
