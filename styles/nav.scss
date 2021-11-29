@@ -9,12 +9,13 @@ nav, .navbar-pages, .user, .login, .my-quizzes {
   flex-direction: column;
 }
 
-nav {
+.navbar {
   background-color: partial.$color-navbar;
   position: fixed;
   top: 0;
   width: 100%;
   box-shadow: 0 2px partial.$color-shadow;
+  z-index: 1;
 }
 
 .main-nav {
@@ -25,6 +26,7 @@ nav {
 }
 
 .navbar-brand {
+  color:partial.$color-navbar-complementary;
   font-family: 'Carter One', cursive;
   font-size:  1.15em;
   margin-bottom: 0;
@@ -61,13 +63,6 @@ nav {
   p {
     margin-bottom: 0.2em;
   }
-}
-
-.logout-button {
-  color: #FFFFFF;
-  background-color: partial.$color-red;
-  padding: 0.2em 0 0.2em 0;
-  border-radius: 10px;
 }
 
 // For tablets
