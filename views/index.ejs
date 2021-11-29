@@ -34,6 +34,15 @@
       <!-- Dummy placeholder for now to set the CSS -->
       <!-- Dummy public quizes section -->
       <section class="public-quiz-container">
+        <div class="create-quiz">
+          <form method="POST" action="/new"></form>
+            <header class="create-quiz-title">Create quiz</header>
+            <label for="question-text">What question would you like to add to the quiz?</label>
+            <textarea name="text" id="question-text"></textarea>
+            <button type="submit" class="submit-quiz btn btn-success">Create</button>
+          </form>
+        </div>
+        <h1>Public Quizzes</h1>
         <div class="public-quiz">
           <form method="POST" action="/result"></form>
             <header class="public-quiz-title">Name of the quiz 1</header>
