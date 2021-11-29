@@ -6,7 +6,7 @@ CREATE TABLE quizzes (id SERIAL PRIMARY KEY, catagory_id INTEGER, name VARCHAR(2
 
 CREATE TABLE questions (id SERIAL PRIMARY KEY, quiz_id INTEGER,  question_text TEXT, correct_answer_id INTEGER);
 
-CREATE TABLE answer (id SERIAL PRIMARY KEY, question_id INTEGER, answer_text TEXT);
+CREATE TABLE answers (id SERIAL PRIMARY KEY, question_id INTEGER, answer_text TEXT);
 
 CREATE TABLE results (id SERIAL PRIMARY KEY, quiz_id INTEGER, user_id INTEGER, correct_answers INTEGER);
 
