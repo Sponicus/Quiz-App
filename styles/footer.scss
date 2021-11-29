@@ -1,0 +1,43 @@
+@use 'partial';
+
+.page-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: partial.$color-navbar;
+  bottom: 0;
+  padding: 15px 15px 0 15px;
+  font-size: 0.8em;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      color: #000000;
+      text-decoration: none;
+      padding: 0 2em 0 1em;
+    }
+  }
+
+  p {
+    margin-top: 8px;
+  }
+}
+
+// For desktop
+@media screen and (min-width: 1024px) {
+  .page-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    div {
+      flex-direction: row;
+
+      a {
+        padding: 0 2em 0 2em;
+      }
+    }
+  }
+}
