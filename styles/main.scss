@@ -4,6 +4,7 @@ main {
   display: flex;
   justify-content: center;
   color: partial.$color-light-grey;
+  margin-top: 65px;
 }
 
 .public-quiz {
@@ -17,6 +18,17 @@ main {
 .public-quiz-title {
   font-weight: bold;
   color: #D0ABFC;
+}
+
+.submit-quiz {
+  margin-top: 10px;
+}
+
+// Tablet
+@media screen and (min-width: 768px) {
+  main {
+    margin-top: 110px;
+  }
 }
 
 // For desktop
