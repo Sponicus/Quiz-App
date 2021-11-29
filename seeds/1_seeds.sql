@@ -23,6 +23,7 @@ VALUE (1, 'simple math', 'public', 300000, 'example_email', 2), (2, 'simple triv
 -- VALUE ();
 
 -- ////////SUGESTED QUESTIONS//////////
+
 INSERT INTO questions (quiz_id, question_text, correct_answer_id)
 VALUE (1, '3-1x2 = ?', 3), (1, '5-(-2/3) = ?', 7), (2, 'Who played Danny in the movie "Greese"?', 10), (2, 'What hit Sci-Fi Horror movie franchise was chronicling the story of Lt. Ripley played by Sigourney Weaver?', 12), (2, 'What is the name of the novel series adapted into films by J.K. Rowling?', 19);
 
@@ -31,7 +32,6 @@ VALUE (1, '4'), (1, '0'), (1, '1'), (2, '4 1/3'), (2, '4 2/3'), (2, '5 1/3'), (2
 
 INSERT INTO results (quiz_id, user_id, attempt_number, start_date, end_date, correct_answers, total_questions)
 VALUE (1, 4, 2, '2021-11-28', '2021-11-28', 2, 2 ), (2, 3, 1, '2021-11-28', '2021-11-28', 2, 3), (1, 2, 1, '2021-11-28', '2021-11-28', 1, 2), (2, 2, 3, '2021-11-28', '2021-11-28', 1, 3);
-
 
 INSERT INTO result_questions (result_id, question_id, answer_id, correct, answer_date)
 VALUE (1, 1, 3, true, '2021-11-28'), (1, 2, 7, true, '2021-11-28'), (2, 3, 10, true, '2021-11-28'), (2, 4, 12, true, '2021-11-28'), (2, 5, 18, false, '2021-11-28'), (3, 1, 1, false, '2021-11-28'), (3, 2, 7, true, '2021-11-28'), (4, 3, 11, false, '2021-11-28'), (4, 4, 15, false, '2021-11-28'), (4, 5, 19, true, '2021-11-28');
