@@ -7,7 +7,7 @@ main {
   margin-top: 65px;
 }
 
-.public-quiz {
+.public-quiz, .create-quiz {
   background-color: partial.$color-quiz-background;
   margin: 1em 0.6em;
   padding: 0.7em;
@@ -15,7 +15,26 @@ main {
   border-radius: 10px;
 }
 
-.public-quiz-title {
+.create-quiz {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  color: partial.$color-light-grey;
+  background-color:partial.$color-black;
+}
+
+.submit-quiz {
+  width: 100px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.public-quiz-title, .create-quiz-title {
   font-weight: bold;
   color: #D0ABFC;
 }
