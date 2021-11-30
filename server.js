@@ -56,14 +56,6 @@ app.use("/api/categories", categoriesRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-// Create new JS file then module.exports and require at the top of this file? containing the following before app.get("/", (req, res) => {
-app.get("/take/:id", (req, res) => {
-  const templateVars = {
-    quizId: req.params.id
-  };
-  res.render("take", templateVars);
-});
-
 app.get("/", (req, res) => {
   res.render("index");
 });
