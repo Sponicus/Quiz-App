@@ -1,7 +1,7 @@
 /*
- * All routes for Widgets are defined here
- * Since this file is loaded in server.js into api/widgets,
- *   these routes are mounted onto /widgets
+ * All routes for results are defined here
+ * Since this file is loaded in server.js into api/results,
+ *   these routes are mounted onto /results
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
@@ -10,12 +10,12 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    let query = `SELECT * FROM widgets`;
+    let query = `SELECT * FROM results`;
     console.log(query);
     db.query(query)
       .then(data => {
-        const widgets = data.rows;
-        res.json({ widgets });
+        const results = data.rows;
+        res.json({ results });
       })
       .catch(err => {
         res
