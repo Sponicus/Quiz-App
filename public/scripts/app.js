@@ -22,10 +22,10 @@ $(document).ready(function() {
     return `
       <article class="single-quiz">
         <form method="POST" action="/result">
-          <header class="public-quiz-title">${escape(quiz.name)}</header>
+          <header class="public-quiz-title">${escape(quiz.quiz_name)}</header>
           <p class="public-quiz-header">Description: ${escape(quiz.description)}</p>
-          <footer class="public-quiz-header">Created by creator_id: ${escape(quiz.creator_id)}</footer>
-          <button type="submit" class="submit-quiz btn btn-primary">Submit</button>
+          <footer class="public-quiz-header">Created by: ${escape(quiz.user_name)}</footer>
+          <button type="submit" class="submit-quiz btn btn-primary">Take quiz</button>
         </form>
       </article>
     `;
