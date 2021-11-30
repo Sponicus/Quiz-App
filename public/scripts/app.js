@@ -91,24 +91,16 @@ $(document).ready(function() {
     </div>`
   };
 
-  const addAnswer = () => {
+  const addAnswer = (e) => {
     // button.parent()
     const button = $('.addAnswer');
+    console.log(button, "this is the button");
+    console.log(e.target, "this is the target");
     const $answer = createAnswerElement();
-    button.before($answer);
+    $(e.target).before($answer)
+
   }
 
   const $answerButton = $('.addAnswer');
   $answerButton.click(addAnswer);
 });
-
-
-////Problems//////
-// 1) add event listener to new button without targeting other buttons
-// 2) append new answer before the button within the specific div
-
-
-
-//add event listener on line 99 to addAnswer button
-  //add event lister to new answer button
-    //target parentdiv to add answer.before(button)
