@@ -1,0 +1,2 @@
+INSERT INTO answers (question_id, answer_text, correct_answer)
+VALUES (1, '4', false), (1, '0', false), (1, '1', true), (2, '4 1/3', false), (2, '4 2/3', false), (2, '5 1/3', false), (2, '5 2/3', true), (3, 'Will Smith', false), (3, 'Robert Downey Jr.', false), (3, 'John Travolta', true), (3, 'Tom Cruise', false), (4, 'Aliens', true), (4, 'Independence Day', false), (4, 'Firefly', false), (4, 'Serenity', false), (5, 'Lord of the Flies', false), (5, 'The Hunger Games', false), (5, 'Lord of the Rings', false), (5, 'Harry Potter', true);
