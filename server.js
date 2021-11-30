@@ -71,3 +71,10 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+app.get("/create", (req, res) => {
+  const templateVars = {
+    quizId: req.params.id
+  };
+  res.render("create_quiz", templateVars);
+});

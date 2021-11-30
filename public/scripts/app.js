@@ -55,4 +55,60 @@ $(document).ready(function() {
   };
 
   loadQuizzes();
+
+
+  const createQuestionElement = () => {
+    console.log("working");
+    return `
+    <div>
+      <label for="question-text">What question would you like to add to the quiz?</label>
+      <input name="text" id="question-text" placeholder="question"></input>
+      <label for="answer-text">What answer would you like to add to the question?</label>
+      <input name="text" id="answer-text" placeholder="answer"></input>
+      <button type="submit" class="submit-quiz btn btn-success hide addAnswer" >Add Answer</button>
+    </div>`
+  };
+
+  const addQuestion = () => {
+    const container = $('.quiz-element-container');
+    const $question = createQuestionElement();
+    console.log(container);
+    container.append($question);
+    const $answerButton = $('.addAnswer');
+    $answerButton.off();
+    $answerButton.click(addAnswer);
+
+  }
+  const listenQuestion = $(".addQuestion");
+  listenQuestion.click(addQuestion);
+
+  const createAnswerElement = () => {
+    console.log("working");
+    return `
+    <div>
+      <label for="answer-text">What answer would you like to add to the question?</label>
+      <input name="text" id="answer-text" placeholder="answer"></input>
+    </div>`
+  };
+
+  const addAnswer = () => {
+    // button.parent()
+    const button = $('.addAnswer');
+    const $answer = createAnswerElement();
+    button.before($answer);
+  }
+
+  const $answerButton = $('.addAnswer');
+  $answerButton.click(addAnswer);
 });
+
+
+////Problems//////
+// 1) add event listener to new button without targeting other buttons
+// 2) append new answer before the button within the specific div
+
+
+
+//add event listener on line 99 to addAnswer button
+  //add event lister to new answer button
+    //target parentdiv to add answer.before(button)
