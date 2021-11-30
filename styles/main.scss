@@ -2,17 +2,24 @@
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   color: partial.$color-light-grey;
   margin-top: 65px;
 }
 
-.public-quiz, .create-quiz {
+#quizzes-container {
+  width: 100%;
+}
+
+.single-quiz, .public-quiz, .create-quiz {
   background-color: partial.$color-quiz-background;
-  margin: 1em 0.6em;
+  margin: 1em 0em 1em 0.4em;
   padding: 0.7em;
   border: solid 1px;
   border-radius: 10px;
+  width: 95%;
 }
 
 .create-quiz {
@@ -23,10 +30,6 @@ main {
 textarea {
   color: partial.$color-light-grey;
   background-color:partial.$color-black;
-}
-
-.submit-quiz {
-  width: 100px;
 }
 
 h1 {
@@ -52,7 +55,7 @@ h1 {
 
 // For desktop
 @media screen and (min-width: 1024px) {
-  .public-quiz-container {
+  #quizzes-container, .public-quiz-container {
     width: 70%;
   }
 }
