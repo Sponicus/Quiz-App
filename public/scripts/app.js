@@ -21,11 +21,13 @@ $(document).ready(function() {
   const createQuizElement = (quiz) => {
     return `
       <article class="single-quiz">
-        <form method="GET" action="/take/${quiz.quiz_id}">
+        <form method="GET" action="/${quiz.quiz_id}">
           <header class="public-quiz-title">${escape(quiz.quiz_name)}</header>
           <p class="public-quiz-header">Description: ${escape(quiz.description)}</p>
+          <p class="public-quiz-header">Question: ${escape(quiz.question)}</p>
           <footer class="public-quiz-header">Created by: ${escape(quiz.user_name)}</footer>
           <button type="submit" class="submit-quiz btn btn-primary">Take quiz</button>
+          <div id="quiz-cont${quiz.quiz_id}"></div>
         </form>
       </article>
     `;
@@ -34,8 +36,8 @@ $(document).ready(function() {
   const renderQuizzes = (quizzes) => {
     const container = $('#quizzes-container');
     container.empty(); // Make sure the element with with id="quizzes-container" has no text inside it
+
     for (let quizData of quizzes.quizzes) {
-      console.log(quizData);
       const $quiz = createQuizElement(quizData);
       container.prepend($quiz); // To add it to the page by prepending it inside element with id="quizzes-container"
     }
@@ -55,4 +57,27 @@ $(document).ready(function() {
   };
 
   loadQuizzes();
+
+  const renderSingleQuiz = (quizzes) => {
+    const container = $('#quizzes-container');
+    container.empty(); // Make sure the element with with id="quizzes-container" has no text inside it
+
+    for (let quizData of quizzes.quizzes) {
+      const $quiz = createQuizElement(quizData);
+      container.prepend($quiz); // To add it to the page by prepending it inside element with id="quizzes-container"
+    }
+  };
+
+  const loadSingleQuiz = () => {
+    $.ajax({
+      method: 'GET',
+      url: '/api/quizzes',
+      success: function(data) {
+        renderSingleQuiz(data);
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  };
 });
