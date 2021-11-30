@@ -21,7 +21,7 @@ $(document).ready(function() {
   const createQuizElement = (quiz) => {
     return `
       <article class="single-quiz">
-        <form method="POST" action="/result">
+        <form method="GET" action="/take/${quiz.quiz_id}">
           <header class="public-quiz-title">${escape(quiz.quiz_name)}</header>
           <p class="public-quiz-header">Description: ${escape(quiz.description)}</p>
           <footer class="public-quiz-header">Created by: ${escape(quiz.user_name)}</footer>
@@ -37,7 +37,7 @@ $(document).ready(function() {
     for (let quizData of quizzes.quizzes) {
       console.log(quizData);
       const $quiz = createQuizElement(quizData);
-      container.prepend($quiz); // To add it to the page by prepending it inside element with id="tweets-container"
+      container.prepend($quiz); // To add it to the page by prepending it inside element with id="quizzes-container"
     }
   };
 
