@@ -3,7 +3,10 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM quizzes;`)
+    db.query(`
+      SELECT quizzes.name AS quiz_name, quizzes.description AS description, users.name AS user_name FROM quizzes
+      JOIN users ON users.id = creator_id;
+    `)
       .then(data => {
         const quizzes = data.rows;
         res.json({ quizzes });
