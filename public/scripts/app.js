@@ -41,6 +41,8 @@ $(document).ready(function() {
     }
   };
 
+
+
   const loadQuizzes = () => {
     $.ajax({
       method: 'GET',
@@ -56,48 +58,46 @@ $(document).ready(function() {
 
   loadQuizzes();
 
+  let questionTotal = 0;
 
   const createQuestionElement = () => {
-    console.log("working");
     return `
     <div>
       <label for="question-text">What question would you like to add to the quiz?</label>
-      <input name="text" id="question-text" placeholder="question"></input>
+      <input name="question[${questionTotal}]" placeholder="question"></input>
       <label for="answer-text">What answer would you like to add to the question?</label>
-      <input name="text" id="answer-text" placeholder="answer"></input>
+      <input name="answer[${questionTotal}][]" placeholder="answer"></input>
       <button type="button" class="submit-quiz btn btn-success hide addAnswer" >Add Answer</button>
     </div>`
   };
 
   const addQuestion = () => {
     const container = $('.quiz-element-container');
-    const $question = createQuestionElement();
-    console.log(container);
+    const $question = $($.parseHTML(createQuestionElement()));
     container.append($question);
-    const $answerButton = $('.addAnswer');
+    const currentQuestionTotal = questionTotal;
+    questionTotal++;
+    const $answerButton = $question.find('.addAnswer');
     $answerButton.off();
-    $answerButton.click(addAnswer);
-
+    $answerButton.click((event) => {
+      addAnswer(event, currentQuestionTotal);
+    });
   }
   const listenQuestion = $(".addQuestion");
   listenQuestion.click(addQuestion);
 
-  const createAnswerElement = () => {
-    console.log("working");
+  const createAnswerElement = (index) => {
     return `
     <div>
       <label for="answer-text">What answer would you like to add to the question?</label>
-      <input name="text" id="answer-text" placeholder="answer"></input>
+      <input name="answer[${index}][]" placeholder="answer"></input>
     </div>`
   };
 
-  const addAnswer = (event) => {
-    const button = $('.addAnswer');
-    console.log("this is the button", button);
-    console.log("this is the target", event.target);
-    const $answer = createAnswerElement();
+  const addAnswer = (event, index) => {
+    // const button = $('.addAnswer');
+    const $answer = createAnswerElement(index);
     $(event.target).before($answer)
-
   }
 
   const $answerButton = $('.addAnswer');
