@@ -34,8 +34,8 @@ $(document).ready(function() {
   const renderQuizzes = (quizzes) => {
     const container = $('#quizzes-container');
     container.empty(); // Make sure the element with with id="quizzes-container" has no text inside it
+
     for (let quizData of quizzes.quizzes) {
-      console.log(quizData);
       const $quiz = createQuizElement(quizData);
       container.prepend($quiz); // To add it to the page by prepending it inside element with id="quizzes-container"
     }
