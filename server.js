@@ -1,3 +1,5 @@
+const { generateRandomString } = require('./helpers');
+
 // load .env data into process.env
 require("dotenv").config();
 
@@ -40,6 +42,7 @@ const questionsRoutes = require("./routes/questions");
 const answersRoutes = require("./routes/answers");
 const resultsRoutes = require("./routes/results");
 const quizzesRoutes = require("./routes/quizzes");
+const submitQuizResult = require ("./take");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -48,6 +51,7 @@ app.use("/api/questions", questionsRoutes(db));
 app.use("/api/answers", answersRoutes(db));
 app.use("/api/results", resultsRoutes(db));
 app.use("/api/quizzes", quizzesRoutes(db));
+app.use("/submitResult", submitQuizResult(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -68,6 +72,7 @@ app.get("/take/:id", async (req, res) => {
 
   // Get the question IDs range related to this quiz ID
   const firstQuestionID = queryQuestions.rows[0].question_id;
+  // Number of questions per quiz
   const len = queryQuestions.rows.length;
   const answerOptions = [];
 
@@ -89,7 +94,8 @@ app.get("/take/:id", async (req, res) => {
     quizID: req.params.id,
     quiz_name: queryQuestions.rows[0].quiz_name,
     questions: queryQuestions.rows,
-    answers: answerOptions
+    answers: answerOptions,
+    noOfQuestion: len
   };
 
   res.render("take_quiz", templateVars);
