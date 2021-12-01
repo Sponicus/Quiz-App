@@ -40,7 +40,6 @@ const questionsRoutes = require("./routes/questions");
 const answersRoutes = require("./routes/answers");
 const resultsRoutes = require("./routes/results");
 const quizzesRoutes = require("./routes/quizzes");
-const categoriesRoutes = require("./routes/categories");
 const createRoutes = require("./routes/create");
 
 // Mount all resource routes
@@ -50,7 +49,6 @@ app.use("/api/questions", questionsRoutes(db));
 app.use("/api/answers", answersRoutes(db));
 app.use("/api/results", resultsRoutes(db));
 app.use("/api/quizzes", quizzesRoutes(db));
-app.use("/api/categories", categoriesRoutes(db));
 app.use("/create", createRoutes(db));
 // Note: mount other resources here, using the same pattern above
 

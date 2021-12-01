@@ -12,17 +12,19 @@ module.exports = (db) => {
   })
 
   router.post("/", (req,res) => {
-    // console.log(req.body.question);
-    // const questions = req.body.question;
-    // const answers = req.body.answers;
-    // const userVals = '3' //placeholder
-    // const currentUser = db.query(`SELECT users.id FROM users WHERE users.id = 1$`, [userVals])
-    // const currentQuiz = db.query(`INSERT INTO quizzes VALUES () `)
-    // for (const question of questions) {INSERT INTO questions VALUES ()}    //loop through qArray
+    const questions = req.body.question;
+    const answers = req.body.answers;
+    const userVals = '3' //placeholder
+    const currentUser = db.query(`SELECT users.id FROM users WHERE users.id = 1$`, [userVals])
+    const currentQuiz = db.query(`INSERT INTO quizzes VALUES () `)
+
+
+
+    // for (const question of questions) {INSERT INTO questions VALUES ()}    //loop through questions
     //   //insert questions in DB
     //   //Query its ID
     //   //.then
-    //   //For EachLoop through Questions
+    //   //For EachLoop through answers
     //     //insert answers into DB
     res.redirect("/create");
   })
