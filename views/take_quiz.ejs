@@ -32,8 +32,17 @@
     <%- include('partials/_header') %>
 
     <main>
-      <h1><%= questions %></h1>
-      <section id="quizzes-container"></section>
+      <h1><%= quiz_name %></h1>
+      <section id="take-quiz-container">
+        <% for (const question of questions) { %>
+
+            <p><%= question.question %></p>
+            <% for (const answer of answers) { %>
+              <p><%= answer.answer_text %></p>
+            <% } %>
+
+        <% } %>
+      </section>
     </main>
 
     <footer class="page-footer">
