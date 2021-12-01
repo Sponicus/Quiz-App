@@ -56,7 +56,7 @@ app.use("/api/categories", categoriesRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/take/:id", (req, res) => {
+app.get("/take/:id", async (req, res) => {
   const queryString1 = `
     SELECT quizzes.id AS quiz_id, questions.id AS question_id, quizzes.name AS quiz_name, question_text AS question FROM quizzes
     JOIN users ON users.id = creator_id
@@ -64,25 +64,28 @@ app.get("/take/:id", (req, res) => {
     WHERE questions.quiz_id = ${req.params.id};
   `;
 
-  // Using a promise to query
-  const queryQuestions = db.query(queryString1)
-  .then(res => res.rows[0].quiz_name)
-  .catch(err => console.error('query error', err.message));
-
-  /*const queryString2 = `
-    SELECT answers.* FROM questions
-    JOIN answers ON question_id = questions.id
-    WHERE questions.id = 1;
-  `;
-
-  const queryAnswers = db.query(queryString2, values)
-  .then(res => res.rows)
+  const queryQuestions = await db.query(queryString1)
+  /*.then(res => templateVars['question'] = res.rows)
   .catch(err => console.error('query error', err.message));*/
 
+  const queryString2 = `
+    SELECT answers.* FROM questions
+    JOIN answers ON question_id = questions.id
+    WHERE questions.id = 3;
+  `;
+
+  const queryAnswers = await db.query(queryString2)
+  /*.then(res => res.rows)
+  .catch(err => console.error('query error', err.message));*/
+
+  console.log(queryAnswers.rows);
   const templateVars = {
     quizID: req.params.id,
-    questions: queryQuestions
+    quiz_name: queryQuestions.rows[0].quiz_name,
+    questions: queryQuestions.rows,
+    answers: queryAnswers.rows
   };
+
   res.render("take_quiz", templateVars);
 });
 
