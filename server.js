@@ -41,7 +41,7 @@ const answersRoutes = require("./routes/answers");
 const resultsRoutes = require("./routes/results");
 const quizzesRoutes = require("./routes/quizzes");
 const categoriesRoutes = require("./routes/categories");
-// const createRoutes = require("./routes/create");
+const createRoutes = require("./routes/create");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -51,7 +51,7 @@ app.use("/api/answers", answersRoutes(db));
 app.use("/api/results", resultsRoutes(db));
 app.use("/api/quizzes", quizzesRoutes(db));
 app.use("/api/categories", categoriesRoutes(db));
-// app.use("/api/createRoutes"), createRoutes(db);
+app.use("/create", createRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -66,9 +66,4 @@ app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
 
-app.get("/create", (req, res) => {
-  const templateVars = {
-    quizId: req.params.id
-  };
-  res.render("create_quiz", templateVars);
-});
+
