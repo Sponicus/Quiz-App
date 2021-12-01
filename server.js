@@ -68,22 +68,30 @@ app.get("/take/:id", async (req, res) => {
   /*.then(res => templateVars['question'] = res.rows)
   .catch(err => console.error('query error', err.message));*/
 
-  const queryString2 = `
-    SELECT answers.* FROM questions
-    JOIN answers ON question_id = questions.id
-    WHERE questions.id = 3;
-  `;
+  // Get the question IDs range related to this quiz ID
+  const firstQuestionID = queryQuestions.rows[0].question_id;
+  const len = queryQuestions.rows.length;
+  const answerOptions = [];
 
-  const queryAnswers = await db.query(queryString2)
-  /*.then(res => res.rows)
-  .catch(err => console.error('query error', err.message));*/
+  for (let i = firstQuestionID; i < firstQuestionID + len; i++) {
+    const queryString = `
+      SELECT answers.* FROM questions
+      JOIN answers ON question_id = questions.id
+      WHERE questions.id = ${i};
+    `;
 
-  console.log(queryAnswers.rows);
+    const queryAnswers = await db.query(queryString)
+    /*.then(res => res.rows)
+    .catch(err => console.error('query error', err.message));*/
+
+    answerOptions.push(queryAnswers.rows);
+  }
+
   const templateVars = {
     quizID: req.params.id,
     quiz_name: queryQuestions.rows[0].quiz_name,
     questions: queryQuestions.rows,
-    answers: queryAnswers.rows
+    answers: answerOptions
   };
 
   res.render("take_quiz", templateVars);
@@ -94,5 +102,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Quizzle listening on port ${PORT}`);
 });

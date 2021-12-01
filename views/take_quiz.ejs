@@ -34,14 +34,16 @@
     <main>
       <h1><%= quiz_name %></h1>
       <section id="take-quiz-container">
-        <% for (const question of questions) { %>
-
-            <p><%= question.question %></p>
-            <% for (const answer of answers) { %>
-              <p><%= answer.answer_text %></p>
-            <% } %>
-
-        <% } %>
+        <form action="/somewhere">
+          <% for (const question in questions) { %>
+              <p><%= questions[question].question %></p>
+              <% for (const answer of answers[question]) { %>
+                <input type="radio" id="<%= answer.id %>" name="<%= answer.question_id %>" value="<%= answer.answer_text %>">
+                <label for="html"><%= answer.answer_text %></label>
+              <% } %>
+          <% } %>
+          <button type="submit">Submit</button>
+        </form>
       </section>
     </main>
 
