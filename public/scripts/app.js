@@ -92,7 +92,6 @@ $(document).ready(function() {
   };
 
   const addAnswer = (e) => {
-    // button.parent()
     const button = $('.addAnswer');
     console.log(button, "this is the button");
     console.log(e.target, "this is the target");

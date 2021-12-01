@@ -5,6 +5,6 @@ CREATE TABLE quizzes (
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   description TEXT,
-  is_private BOOLEAN DEFAULT false,
+  is_private BOOLEAN DEFAULT true,
   creator_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
