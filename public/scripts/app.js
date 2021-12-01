@@ -65,7 +65,7 @@ $(document).ready(function() {
       <input name="text" id="question-text" placeholder="question"></input>
       <label for="answer-text">What answer would you like to add to the question?</label>
       <input name="text" id="answer-text" placeholder="answer"></input>
-      <button type="submit" class="submit-quiz btn btn-success hide addAnswer" >Add Answer</button>
+      <button type="button" class="submit-quiz btn btn-success hide addAnswer" >Add Answer</button>
     </div>`
   };
 
@@ -91,12 +91,12 @@ $(document).ready(function() {
     </div>`
   };
 
-  const addAnswer = (e) => {
+  const addAnswer = (event) => {
     const button = $('.addAnswer');
-    console.log(button, "this is the button");
-    console.log(e.target, "this is the target");
+    console.log("this is the button", button);
+    console.log("this is the target", event.target);
     const $answer = createAnswerElement();
-    $(e.target).before($answer)
+    $(event.target).before($answer)
 
   }
 
