@@ -56,6 +56,36 @@ app.use("/api/categories", categoriesRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+app.get("/take/:id", (req, res) => {
+  const queryString1 = `
+    SELECT quizzes.id AS quiz_id, questions.id AS question_id, quizzes.name AS quiz_name, question_text AS question FROM quizzes
+    JOIN users ON users.id = creator_id
+    JOIN questions ON quizzes.id = quiz_id
+    WHERE questions.quiz_id = ${req.params.id};
+  `;
+
+  // Using a promise to query
+  const queryQuestions = db.query(queryString1)
+  .then(res => res.rows[0].quiz_name)
+  .catch(err => console.error('query error', err.message));
+
+  /*const queryString2 = `
+    SELECT answers.* FROM questions
+    JOIN answers ON question_id = questions.id
+    WHERE questions.id = 1;
+  `;
+
+  const queryAnswers = db.query(queryString2, values)
+  .then(res => res.rows)
+  .catch(err => console.error('query error', err.message));*/
+
+  const templateVars = {
+    quizID: req.params.id,
+    questions: queryQuestions
+  };
+  res.render("take_quiz", templateVars);
+});
+
 app.get("/", (req, res) => {
   res.render("index");
 });
