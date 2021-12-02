@@ -10,7 +10,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    console.log(req.body);
+    console.log('The req.body is equal to:', req.body);
 
     /*let query = `SELECT results.total_correct,  FROM results
       JOIN quizzes ON quizzes.id = quiz_id
