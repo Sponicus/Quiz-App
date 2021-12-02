@@ -91,9 +91,6 @@ app.get("/take/:id", async (req, res) => {
     answerOptions.push(queryAnswers.rows);
   }
 
-  //console.log(queryQuestions.rows);
-  console.log(answerOptions);
-
   const templateVars = {
     quizID: req.params.id,
     quiz_name: queryQuestions.rows[0].quiz_name,
