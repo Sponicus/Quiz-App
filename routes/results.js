@@ -10,7 +10,12 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    let query = `SELECT * FROM results`;
+    console.log(req.body);
+
+    /*let query = `SELECT results.total_correct,  FROM results
+      JOIN quizzes ON quizzes.id = quiz_id
+      JOIN users ON users.id = user_id
+      WHERE quiz_id = 2 AND users.id = 3`;
     console.log(query);
     db.query(query)
       .then(data => {
@@ -21,7 +26,17 @@ module.exports = (db) => {
         res
           .status(500)
           .json({ error: err.message });
-      });
+      });*/
+
+
+      /*const templateVars = {
+        quizName: ,
+        shortURL: ,
+        numberOfcorrect: ,
+        total:
+      };*/
+
+      res.render("quiz_result", templateVars);
   });
   return router;
 };
