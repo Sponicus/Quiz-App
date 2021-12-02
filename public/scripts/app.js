@@ -67,9 +67,12 @@ $(document).ready(function() {
       <input name="question[${questionTotal}]" placeholder="question"></input><br>
       <label for="answer-text">What answer would you like to add to the question?</label><br>
       <input name="answer[${questionTotal}][]" placeholder="answer"></input><br>
+      <label for="correct">correct answer</label>
+      <input type="checkbox" name="correct[${questionTotal}][]"><br>
       <button type="button" class="submit-quiz btn btn-success hide addAnswer" >Add Answer</button><br>
     </div>`
   };
+
 
   const addQuestion = () => {
     const container = $('.quiz-element-container');
@@ -90,6 +93,8 @@ $(document).ready(function() {
     return `
     <div>
       <input name="answer[${index}][]" placeholder="answer"></input><br>
+      <label for="correct">correct answer</label>
+      <input type="checkbox" name="correct[${questionTotal}][]"><br>
     </div>`
   };
 

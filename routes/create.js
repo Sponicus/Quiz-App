@@ -13,8 +13,8 @@ module.exports = (db) => {
 
   router.post("/", async (req,res) => {
     //set constants for data to be queried
-    const {question, answer, description, name} = req.body;
-    console.log({question, answer, description, name})
+    const {question, answer, description, name, correct} = req.body;
+    console.log({question, answer, description, name, correct})
     const userID= '3'; //placeholder
     try {
       const resQuiz = await db.query(`INSERT INTO quizzes (name, description, is_private, creator_id) VALUES ($1, $2, true, $3) RETURNING id`, [name, description, userID])
@@ -26,6 +26,7 @@ module.exports = (db) => {
               const questionID = resQuestions.rows[0].id
               try {
                 for (const a in answer[q]) {
+                  console.log(correct)
                   await db.query(`INSERT INTO answers (question_id, answer_text) VALUES ($1, $2)`, [questionID, answer[q][a]])
                 }
               } catch (err) {
