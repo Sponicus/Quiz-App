@@ -68,7 +68,10 @@ $(document).ready(function() {
       <label for="answer-text">What answer would you like to add to the question?</label><br>
       <input name="answer[${questionTotal}][]" placeholder="answer"></input><br>
       <label for="correct">correct answer</label>
-      <input type="checkbox" name="correct[${questionTotal}][]"><br>
+      <select name="correct[${questionTotal}][]">
+        <option value=false>No</option>
+        <option value=true>Yes</option>
+      </select><br>
       <button type="button" class="submit-quiz btn btn-success hide addAnswer" >Add Answer</button><br>
     </div>`
   };
@@ -94,7 +97,10 @@ $(document).ready(function() {
     <div>
       <input name="answer[${index}][]" placeholder="answer"></input><br>
       <label for="correct">correct answer</label>
-      <input type="checkbox" name="correct[${questionTotal}][]"><br>
+      <select name="correct[${index}][]">
+        <option value=false>No</option>
+        <option value=true>Yes</option>
+      </select><br>
     </div>`
   };
 

@@ -15,6 +15,10 @@ module.exports = (db) => {
     //set constants for data to be queried
     const {question, answer, description, name, correct} = req.body;
     console.log({question, answer, description, name, correct})
+    let val = 0;
+    if (correct) {
+      val = 1;
+    }
     const userID= '3'; //placeholder
     try {
       const resQuiz = await db.query(`INSERT INTO quizzes (name, description, is_private, creator_id) VALUES ($1, $2, true, $3) RETURNING id`, [name, description, userID])
@@ -26,8 +30,8 @@ module.exports = (db) => {
               const questionID = resQuestions.rows[0].id
               try {
                 for (const a in answer[q]) {
-                  console.log(correct)
-                  await db.query(`INSERT INTO answers (question_id, answer_text) VALUES ($1, $2)`, [questionID, answer[q][a]])
+                  console.log(correct[q][a])
+                  await db.query(`INSERT INTO answers (question_id, answer_text, correct_answer) VALUES ($1, $2, $3)`, [questionID, answer[q][a], correct[q][a]])
                 }
               } catch (err) {
                 console.log(err.stack)
