@@ -41,6 +41,7 @@ const answersRoutes = require("./routes/answers");
 const resultsRoutes = require("./routes/results");
 const quizzesRoutes = require("./routes/quizzes");
 const createRoutes = require("./routes/create");
+const loginRoutes = require("./routes/login")
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -50,6 +51,7 @@ app.use("/api/answers", answersRoutes(db));
 app.use("/api/results", resultsRoutes(db));
 app.use("/api/quizzes", quizzesRoutes(db));
 app.use("/create", createRoutes(db));
+app.use("/login", loginRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
