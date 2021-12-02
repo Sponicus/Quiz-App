@@ -41,6 +41,15 @@ $(document).ready(function() {
     }
   };
 
+  const renderMyQuizzes = (quizzes) => {
+    const container = $('#user-quizzes-container');
+    container.empty(); // Make sure the element with with id="quizzes-container" has no text inside it
+
+    for (let quizData of quizzes.quizzes) {
+      const $quiz = createQuizElement(quizData);
+      container.prepend($quiz); // To add it to the page by prepending it inside element with id="quizzes-container"
+    }
+  };
 
 
   const loadQuizzes = () => {
@@ -58,6 +67,19 @@ $(document).ready(function() {
 
   loadQuizzes();
 
+  const loadMyQuizzes = () => {
+    $.ajax({
+      method: 'GET',
+      url: '/prev',
+      success: function(data) {
+        renderMyQuizzes(data);
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  };
+  loadMyQuizzes()
   let questionTotal = 0;
 
   const createQuestionElement = () => {
