@@ -1,5 +1,5 @@
 const generateRandomString = () => {
-  let randomString = "";
+  let randomString = '';
 
   for (let i = 0; i < 6; i++) {
     // Generate a random integer number: 0, 1, or 2
