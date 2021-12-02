@@ -8,9 +8,15 @@ module.exports = (db) => {
   router.post("/", async (req, res) => {
     const genShortURL = generateRandomString();
 
-    console.log(req.body);
-
     const results = req.body;
+    const firstQuestionID = Object.keys(results)[0];
+
+    // To get the quiz ID for these questions
+    const quizId = await db.query(`
+      SELECT quiz_id FROM questions
+      WHERE id = ${firstQuestionID};
+    `);
+
     let sum = 0;
     try {
       for (let questionID in results) {
@@ -18,7 +24,6 @@ module.exports = (db) => {
           SELECT COUNT(*) FROM answers
           WHERE question_id = $1 AND answer_text = $2 AND correct_answer = TRUE;
         `, [questionID, results[questionID]]);
-        console.log('count:', count);
 
         if (count.rows[0].count == 1) {
             sum++;
@@ -29,11 +34,9 @@ module.exports = (db) => {
       console.log(error);
     }
 
-    console.log(sum);
-
     db.query(`
       INSERT INTO results (quiz_id, user_id, total_correct)
-      VALUES (?, 1, ${sum});;
+      VALUES (${quizId.rows[0].quiz_id}, 1, ${sum});
     `)
       .then(data => {
         const quizzes = data.rows;
@@ -45,7 +48,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
       res.redirect("/");
-      //res.redirect(`/prev/${genShortURL}`);*/
+      //res.redirect(`/results/${genShortURL}`);*/
   });
 
   return router;
