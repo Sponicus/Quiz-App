@@ -63,11 +63,11 @@ $(document).ready(function() {
   const createQuestionElement = () => {
     return `
     <div>
-      <label for="question-text">What question would you like to add to the quiz?</label>
-      <input name="question[${questionTotal}]" placeholder="question"></input>
-      <label for="answer-text">What answer would you like to add to the question?</label>
-      <input name="answer[${questionTotal}][]" placeholder="answer"></input>
-      <button type="button" class="submit-quiz btn btn-success hide addAnswer" >Add Answer</button>
+      <label for="question-text">What question would you like to add to the quiz?</label><br>
+      <input name="question[${questionTotal}]" placeholder="question"></input><br>
+      <label for="answer-text">What answer would you like to add to the question?</label><br>
+      <input name="answer[${questionTotal}][]" placeholder="answer"></input><br>
+      <button type="button" class="submit-quiz btn btn-success hide addAnswer" >Add Answer</button><br>
     </div>`
   };
 
@@ -89,8 +89,7 @@ $(document).ready(function() {
   const createAnswerElement = (index) => {
     return `
     <div>
-      <label for="answer-text">What answer would you like to add to the question?</label>
-      <input name="answer[${index}][]" placeholder="answer"></input>
+      <input name="answer[${index}][]" placeholder="answer"></input><br>
     </div>`
   };
 
