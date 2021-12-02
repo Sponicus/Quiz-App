@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- Disable viewport zooming -->
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+  <title>Home Page</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Itim&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+</head>
+
+<body>
+  <div id="bootstrap-div" class="container-fluid">
+    <%- include('partials/_header') %>
+
+    <main>
+      <section class="create-quiz-container">
+        <div class="create-quiz">
+          <form method="POST" action="/register">
+            <header class="register">Register</header>
+            <div class="register-container">
+              <label for="register-name">Name</label><br>
+              <input name="name" placeholder="name"></input><br>
+              <label for="register-username">Username</label><br>
+              <input name="username" placeholder="username"></input><br>
+              <label for="register-password">E-mail</label><br>
+              <input name="email" placeholder="email"></input><br>
+              <label for="register-password">Password</label><br>
+              <input name="password" placeholder="password"></input><br>
+            </div>
+            <footer class="register-footer">
+              <button type="submit" class="submit-register btn btn-success hide">register</button>
+            </footer>
+          </form>
+        </div>
+        </section>
+    </main>
+
+    <footer class="page-footer">
+      <div>
+        <a href="/about">About</a>
+        <a href="/copyright">Copyright Notice</a>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+      <p>© 2021 Quizzle, Inc.</p>
+    </footer>
+  </div>
+  <!-- To ensure the code in these files run only after the content is loaded onto the page -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</body>
+
+</html>

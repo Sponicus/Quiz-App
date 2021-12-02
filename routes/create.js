@@ -7,7 +7,7 @@ const router  = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const templateVars = {
-      // userID: req.params.id
+      user: req.session.user_id
     };
     res.render("create_quiz", templateVars);
   })
@@ -21,7 +21,7 @@ module.exports = (db) => {
     if (correct) {
       val = 1;
     }
-    const userID= '3'; //placeholder
+    const userID = req.session.user_id
     try {
       const resQuiz = await db.query(`INSERT INTO quizzes (name, description, short_url, is_private, creator_id) VALUES ($1, $2, $3, true, $4) RETURNING id`, [name, description, newURL, userID])
         console.log({res: resQuiz})
