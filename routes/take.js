@@ -1,4 +1,4 @@
-const { generateRandomString } = require('../helpers');
+const { generateRandomString } = require('../public/scripts/helpers');
 const express = require('express');
 const router  = express.Router();
 
@@ -47,8 +47,8 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-      res.redirect("/");
-      //res.redirect(`/results/${genShortURL}`);*/
+      res.redirect(`/`);
+      /*res.redirect(`/results/${genShortURL}`)*/;
   });
 
   return router;
