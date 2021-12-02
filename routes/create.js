@@ -1,4 +1,5 @@
 const express = require('express');
+const {generateRandomString} = require("../public/scripts/helpers");
 const router  = express.Router();
 
 
@@ -13,6 +14,7 @@ module.exports = (db) => {
 
   router.post("/", async (req,res) => {
     //set constants for data to be queried
+    const newURL = generateRandomString();
     const {question, answer, description, name, correct} = req.body;
     console.log({question, answer, description, name, correct})
     let val = 0;
@@ -21,7 +23,7 @@ module.exports = (db) => {
     }
     const userID= '3'; //placeholder
     try {
-      const resQuiz = await db.query(`INSERT INTO quizzes (name, description, is_private, creator_id) VALUES ($1, $2, true, $3) RETURNING id`, [name, description, userID])
+      const resQuiz = await db.query(`INSERT INTO quizzes (name, description, short_url, is_private, creator_id) VALUES ($1, $2, $3, true, $4) RETURNING id`, [name, description, newURL, userID])
         console.log({res: resQuiz})
         const quizID = resQuiz.rows[0].id;
         try {
