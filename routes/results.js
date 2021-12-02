@@ -11,19 +11,17 @@ const router  = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     let newestQuizResult;
-    //const user = req.session.user_id; // THIS IS CORRECT AND USE AS REFERENCE ON OTHER PAGES
-
-    //WHERE results.user_id = ${user}
+    const user = req.session.user_id; // THIS IS CORRECT AND USE AS REFERENCE ON OTHER PAGES
 
     db.query(
       `SELECT results.*, quizzes.name
       FROM results
       JOIN quizzes ON quizzes.id = quiz_id
       JOIN users ON users.id = user_id
-      WHERE results.user_id = 2
+      WHERE results.user_id = $1
       ORDER BY results.id DESC
       LIMIT 1;`
-      )
+      ,[user])
       .then(quizRes => {
         newestQuizResult = quizRes.rows[0];
         console.table(quizRes.rows);
