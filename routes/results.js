@@ -10,15 +10,49 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    let query = `SELECT results.total_correct,  FROM results
+    let newestQuizResult;
+    //const user = req.session.user_id; // THIS IS CORRECT AND USE AS REFERENCE ON OTHER PAGES
+
+    //WHERE results.user_id = ${user}
+
+    db.query(
+      `SELECT results.*, quizzes.name
+      FROM results
       JOIN quizzes ON quizzes.id = quiz_id
       JOIN users ON users.id = user_id
-      WHERE quiz_id = 2 AND users.id = 3`;
-    console.log(query);
-    db.query(query)
-      .then(data => {
-        const results = data.rows;
-        res.json({ results });
+      WHERE results.user_id = 2
+      ORDER BY results.id DESC
+      LIMIT 1;`
+      )
+      .then(quizRes => {
+        newestQuizResult = quizRes.rows[0];
+        console.table(quizRes.rows);
+        console.log('newestQuizResult is the following:', quizRes.rows[0])
+
+
+        let query2 = `SELECT COUNT(questions.id) FROM questions
+        JOIN quizzes ON quizzes.id = quiz_id
+        WHERE quizzes.id = ${newestQuizResult.quiz_id}`;
+
+        db.query(query2)
+          .then(data => {
+            const noOfQuestions = data.rows[0];
+
+            const templateVars = {
+              quizName: newestQuizResult.name,
+              shortURL: newestQuizResult.short_url,
+              resultID: newestQuizResult.id,
+              numberOfcorrect: newestQuizResult.total_correct,
+              total: noOfQuestions.count
+            };
+
+            res.render("quiz_result", templateVars);
+          })
+          .catch(err => {
+            res
+              .status(500)
+              .json({ error: err.message });
+          });
       })
       .catch(err => {
         res
@@ -26,15 +60,25 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
 
+    //   //console.log('newestQuizResult is the following:', newestQuizResult);
 
-      /*const templateVars = {
-        quizName: ,
-        shortURL: ,
-        numberOfcorrect: ,
-        total:
-      };*/
+    //   let query2 = `SELECT COUNT(questions.id) FROM questions
+    //   JOIN quizzes ON quizzes.id = quiz_id
+    //   WHERE quizzes.id = ${newestQuizResult.quiz_id}`;
 
-      res.render("quiz_result", templateVars);
+    // const numberOfQuestions = db.query(query2)
+    //   .then(data => {
+    //     const results = data.rows[0];
+    //     res.json({ results });
+    //   })
+    //   .catch(err => {
+    //     res
+    //       .status(500)
+    //       .json({ error: err.message });
+    //   });
+
+    //   //console.log('numberOfQuestions is the following:', numberOfQuestions);
+
   });
   return router;
 };

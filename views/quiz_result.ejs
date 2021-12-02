@@ -36,8 +36,8 @@
       <section class="card text-center">
         <div class="card-header"></div>
         <div class="card-body">
-          <p class="card-title">Share your quiz result for <%= quizName %></p>
-          <p class="card-text">Quiz result link: <a href="/u/<%= shortURL %>"><%= shortURL %></a></p>
+          <p class="card-title">Share your quiz result for<%= quizName %></p>
+          <p class="card-text">Quiz result link: <a href="/<%= shortURL %>/<%= resultID %>"></a></p>
           <p class="card-text">You answered correctly for <%= numberOfcorrect %> out of <%= total %>!</p>
         </div>
         <div class="card-footer text-muted"></div>

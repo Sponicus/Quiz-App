@@ -7,6 +7,7 @@ module.exports = (db) => {
 
   router.post("/", async (req, res) => {
     const genShortURL = generateRandomString();
+    //const user = users[req.session.user_id];
 
     const results = req.body;
     const firstQuestionID = Object.keys(results)[0];
@@ -36,7 +37,7 @@ module.exports = (db) => {
 
     db.query(`
       INSERT INTO results (quiz_id, user_id, total_correct)
-      VALUES (${quizId.rows[0].quiz_id}, 1, ${sum});
+      VALUES (${quizId.rows[0].quiz_id}, 2, ${sum});
     `)
       .then(data => {
         const quizzes = data.rows;
@@ -47,8 +48,9 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-      res.redirect(`/`);
-      /*res.redirect(`/results/${genShortURL}`)*/;
+
+      //res.redirect(`/`);
+      res.redirect(`/results/${genShortURL}`);
   });
 
   return router;
