@@ -42,7 +42,7 @@ const questionsRoutes = require("./routes/questions");
 const answersRoutes = require("./routes/answers");
 const resultsRoutes = require("./routes/results");
 const quizzesRoutes = require("./routes/quizzes");
-const submitQuizResult = require ("./take");
+const submitQuizResult = require ("./routes/take");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -51,6 +51,7 @@ app.use("/api/questions", questionsRoutes(db));
 app.use("/api/answers", answersRoutes(db));
 app.use("/api/results", resultsRoutes(db));
 app.use("/api/quizzes", quizzesRoutes(db));
+//app.use("/take/:id",)
 app.use("/submitResult", submitQuizResult(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -89,6 +90,9 @@ app.get("/take/:id", async (req, res) => {
 
     answerOptions.push(queryAnswers.rows);
   }
+
+  //console.log(queryQuestions.rows);
+  console.log(answerOptions);
 
   const templateVars = {
     quizID: req.params.id,
