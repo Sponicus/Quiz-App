@@ -41,6 +41,8 @@ $(document).ready(function() {
     }
   };
 
+
+
   const loadQuizzes = () => {
     $.ajax({
       method: 'GET',
@@ -55,4 +57,59 @@ $(document).ready(function() {
   };
 
   loadQuizzes();
+
+  let questionTotal = 0;
+
+  const createQuestionElement = () => {
+    return `
+    <div>
+      <label for="question-text">What question would you like to add to the quiz?</label><br>
+      <input name="question[${questionTotal}]" placeholder="question"></input><br>
+      <label for="answer-text">What answer would you like to add to the question?</label><br>
+      <input name="answer[${questionTotal}][]" placeholder="answer"></input><br>
+      <label for="correct">correct answer</label>
+      <select name="correct[${questionTotal}][]">
+        <option value=false>No</option>
+        <option value=true>Yes</option>
+      </select><br>
+      <button type="button" class="submit-quiz btn btn-success hide addAnswer" >Add Answer</button><br>
+    </div>`
+  };
+
+
+  const addQuestion = () => {
+    const container = $('.quiz-element-container');
+    const $question = $($.parseHTML(createQuestionElement()));
+    container.append($question);
+    const currentQuestionTotal = questionTotal;
+    questionTotal++;
+    const $answerButton = $question.find('.addAnswer');
+    $answerButton.off();
+    $answerButton.click((event) => {
+      addAnswer(event, currentQuestionTotal);
+    });
+  }
+  const listenQuestion = $(".addQuestion");
+  listenQuestion.click(addQuestion);
+
+  const createAnswerElement = (index) => {
+    return `
+    <div>
+      <input name="answer[${index}][]" placeholder="answer"></input><br>
+      <label for="correct">correct answer</label>
+      <select name="correct[${index}][]">
+        <option value=false>No</option>
+        <option value=true>Yes</option>
+      </select><br>
+    </div>`
+  };
+
+  const addAnswer = (event, index) => {
+    // const button = $('.addAnswer');
+    const $answer = createAnswerElement(index);
+    $(event.target).before($answer)
+  }
+
+  const $answerButton = $('.addAnswer');
+  $answerButton.click(addAnswer);
 });
