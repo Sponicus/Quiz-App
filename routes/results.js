@@ -57,26 +57,6 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-
-    //   //console.log('newestQuizResult is the following:', newestQuizResult);
-
-    //   let query2 = `SELECT COUNT(questions.id) FROM questions
-    //   JOIN quizzes ON quizzes.id = quiz_id
-    //   WHERE quizzes.id = ${newestQuizResult.quiz_id}`;
-
-    // const numberOfQuestions = db.query(query2)
-    //   .then(data => {
-    //     const results = data.rows[0];
-    //     res.json({ results });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
-
-    //   //console.log('numberOfQuestions is the following:', numberOfQuestions);
-
   });
   return router;
 };
