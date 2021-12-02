@@ -13,7 +13,7 @@ module.exports = (db) => {
 
   router.post("/", async (req,res) => {
     //set constants for data to be queried
-    const {question, answer, description, name="a cool name for quiz"} = req.body;
+    const {question, answer, description, name} = req.body;
     console.log({question, answer, description, name})
     const userID= '3'; //placeholder
     try {
@@ -36,7 +36,7 @@ module.exports = (db) => {
           console.log(err.stack)
         }
       ;
-      res.redirect("/create");
+      res.redirect("/");
     } catch (err) {
       console.log(err.stack)
       res.send('something went wrong!!! :(')
