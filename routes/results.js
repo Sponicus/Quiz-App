@@ -10,9 +10,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    console.log('The req.body is equal to:', req.body);
-
-    /*let query = `SELECT results.total_correct,  FROM results
+    let query = `SELECT results.total_correct,  FROM results
       JOIN quizzes ON quizzes.id = quiz_id
       JOIN users ON users.id = user_id
       WHERE quiz_id = 2 AND users.id = 3`;
@@ -26,7 +24,7 @@ module.exports = (db) => {
         res
           .status(500)
           .json({ error: err.message });
-      });*/
+      });
 
 
       /*const templateVars = {
