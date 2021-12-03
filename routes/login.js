@@ -4,7 +4,7 @@ const router  = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const templateVars = {
-      user: null
+      cookieUser: null
     };
     res.render("login", templateVars);
   })
