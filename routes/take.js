@@ -36,8 +36,8 @@ module.exports = (db) => {
     }
 
     db.query(`
-      INSERT INTO results (quiz_id, user_id, total_correct)
-      VALUES (${quizId.rows[0].quiz_id}, $1, ${sum});
+      INSERT INTO results (quiz_id, user_id, short_url, total_correct)
+      VALUES (${quizId.rows[0].quiz_id}, $1, '${genShortURL}', ${sum});
     `, [user])
       .then(data => {
         const quizzes = data.rows;
