@@ -36,6 +36,7 @@ module.exports = (db) => {
 
             const templateVars = {
               user: user,
+              cookieUser: req.session.user_id,
               quizTakerID: newestQuizResult.user_id,
               quizTaker: newestQuizResult.username,
               quizName: newestQuizResult.name,
