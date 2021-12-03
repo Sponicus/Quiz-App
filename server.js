@@ -84,6 +84,8 @@ app.use("/prev", userQuizzesRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/take/:id", async (req, res) => {
+  const cookieUserID = req.session.user_id;
+
   const queryString1 = `
     SELECT quizzes.id AS quiz_id, questions.id AS question_id, quizzes.name AS quiz_name, question_text AS question FROM quizzes
     JOIN users ON users.id = creator_id
@@ -116,6 +118,7 @@ app.get("/take/:id", async (req, res) => {
   }
 
   const templateVars = {
+    cookieUser: req.session.user_id,
     quizID: req.params.id,
     quiz_name: queryQuestions.rows[0].quiz_name,
     questions: queryQuestions.rows,
