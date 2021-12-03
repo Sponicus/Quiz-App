@@ -44,7 +44,18 @@ $(document).ready(function() {
       </article>
     `;
   };
-///////////THIS ONE WORKS//////////////
+
+  const createRecentResultsElement = (results) => {
+    return `
+      <article class="single-quiz">
+        <form method="GET" action="/api/${results.quiz_id}">
+        <p>${results.name}</p>
+        <p>${results.score}%</p>
+        </form>
+      </article>
+    `;
+  };
+
   const renderQuizzes = (quizzes) => {
     const container = $('#quizzes-container');
     container.empty(); // Make sure the element with with id="quizzes-container" has no text inside it
@@ -54,20 +65,40 @@ $(document).ready(function() {
       container.prepend($quiz); // To add it to the page by prepending it inside element with id="quizzes-container"
     }
   };
-/////////////THIS ONE DOESN'T???????????/////////////////
+
   const renderMyQuizzes = (quizzes) => {
     // console.log(quizzes)
     const container = $('#user-quizzes-container');
-    container.empty(); // Make sure the element with with id="quizzes-container" has no text inside it
+    container.empty(); // Make sure the element with with id="user-quizzes-container" has no text inside it
 
     for (let quizData of quizzes.quizzes) {
       const $quiz = createMyQuizElement(quizData);
-      container.prepend($quiz); // To add it to the page by prepending it inside element with id="quizzes-container"
+      container.prepend($quiz); // To add it to the page by prepending it inside element with id="user-quizzes-container"
     }
 
   };
 
+  const renderRecentQuizzes = (results) => {
+    const container = $('#recent-results-container');
+    for (let resultData of results.results) {
+      const $result = createRecentResultsElement(resultData);
+      container.prepend($result)
+    };
+  };
 
+  const loadRecentResults = () => {
+    $.ajax({
+      method: 'GET',
+      url: '/api/recentResults',
+      success: function(data) {
+        renderRecentQuizzes(data)
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  };
+  loadRecentResults();
 
   const loadQuizzes = () => {
     $.ajax({
