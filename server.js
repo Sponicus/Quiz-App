@@ -130,7 +130,11 @@ app.get("/take/:id", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("index");
+  const templateVars = {
+    cookieUser: req.session.user_id
+  };
+
+  res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {
