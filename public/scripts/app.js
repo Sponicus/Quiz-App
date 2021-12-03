@@ -31,6 +31,20 @@ $(document).ready(function() {
     `;
   };
 
+  const createMyQuizElement = (quiz) => {
+    return `
+      <article class="single-quiz">
+        <form method="GET" action="/take/${quiz.quiz_id}">
+          <header class="public-quiz-title">${escape(quiz.quiz_name)}</header>
+          <p class="public-quiz-header">Description: ${escape(quiz.description)}</p>
+          <footer class="public-quiz-header">Created by: ${escape(quiz.user_name)}</footer>
+          <button type="submit" class="submit-quiz btn btn-primary">Take quiz</button>
+        </form>
+        <button class="make-public submit-quiz btn btn-primary" data-quiz-id="${quiz.quiz_id}">Make ${quiz.is_private?"public":"private"}</button>
+      </article>
+    `;
+  };
+///////////THIS ONE WORKS//////////////
   const renderQuizzes = (quizzes) => {
     const container = $('#quizzes-container');
     container.empty(); // Make sure the element with with id="quizzes-container" has no text inside it
@@ -40,16 +54,19 @@ $(document).ready(function() {
       container.prepend($quiz); // To add it to the page by prepending it inside element with id="quizzes-container"
     }
   };
-
+/////////////THIS ONE DOESN'T???????????/////////////////
   const renderMyQuizzes = (quizzes) => {
+    // console.log(quizzes)
     const container = $('#user-quizzes-container');
     container.empty(); // Make sure the element with with id="quizzes-container" has no text inside it
 
     for (let quizData of quizzes.quizzes) {
-      const $quiz = createQuizElement(quizData);
+      const $quiz = createMyQuizElement(quizData);
       container.prepend($quiz); // To add it to the page by prepending it inside element with id="quizzes-container"
     }
+
   };
+
 
 
   const loadQuizzes = () => {
@@ -70,7 +87,7 @@ $(document).ready(function() {
   const loadMyQuizzes = () => {
     $.ajax({
       method: 'GET',
-      url: '/prev',
+      url: '/api/myQuizzes',
       success: function(data) {
         renderMyQuizzes(data);
       },
@@ -80,6 +97,19 @@ $(document).ready(function() {
     });
   };
   loadMyQuizzes()
+
+  $('#user-quizzes-container').on("click", "button.make-public", (event)=>{
+    const quiz_id = $(event.target).data("quiz-id")
+    // console.log("toggling", quiz_id);
+    $.ajax({
+      method: 'PATCH',
+      url:`/api/myQuizzes/${quiz_id}/toggle`
+    }) .then(()=>{
+      loadMyQuizzes();
+      loadQuizzes();
+    })
+  })
+
   let questionTotal = 0;
 
   const createQuestionElement = () => {
