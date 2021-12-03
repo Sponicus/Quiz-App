@@ -6,20 +6,25 @@
     </div>
     <div class="navbar-pages">
       <div class="navbar-right">
-        <form class="user" method="POST" action="/logout">
-          <p>Logged in as: username</p>
-          <button type="submit" class="btn btn-danger">Logout</button>
-        </form>
-        <div class="login">
-          <a href="/login">Login</a>
-          <a href="/register">Register</a>
+        <% if(user){ %>
+          <form class="user" method="POST" action="/logout">
+            <p>Logged in</p>
+            <button type="submit" class="btn btn-danger">Logout</button>
+          </form>
+        <% } else { %>
+          <div class="login">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+          </div>
+        <% } %>
+      </div>
+      <% if(user){ %>
+        <div class="my-quizzes">
+          <a href="/"><span class="fas fa-home"></span></a>
+          <a href="/create">Create quiz</a>
+          <a href="/prev">My quizzes</a>
         </div>
-      </div>
-      <div class="my-quizzes">
-        <a href="/"><span class="fas fa-home"></span></a>
-        <a href="/create">Create quiz</a>
-        <a href="/prev">My quizzes</a>
-      </div>
+      <% } %>
     </div>
   </nav>
 </header>
