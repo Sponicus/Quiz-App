@@ -31,6 +31,31 @@ $(document).ready(function() {
     `;
   };
 
+  const createMyQuizElement = (quiz) => {
+    return `
+      <article class="single-quiz">
+        <form method="GET" action="/take/${quiz.quiz_id}">
+          <header class="public-quiz-title">${escape(quiz.quiz_name)}</header>
+          <p class="public-quiz-header">Description: ${escape(quiz.description)}</p>
+          <footer class="public-quiz-header">Created by: ${escape(quiz.user_name)}</footer>
+          <button type="submit" class="submit-quiz btn btn-primary">Take quiz</button>
+        </form>
+        <button class="make-public submit-quiz btn btn-primary" data-quiz-id="${quiz.quiz_id}">Make ${quiz.is_private?"public":"private"}</button>
+      </article>
+    `;
+  };
+
+  const createRecentResultsElement = (results) => {
+    return `
+      <article class="single-result">
+        <form method="GET" action="/api/${results.quiz_id}">
+        <p>${results.name}</p>
+        <p>${results.score}%</p>
+        </form>
+      </article>
+    `;
+  };
+
   const renderQuizzes = (quizzes) => {
     const container = $('#quizzes-container');
     container.empty(); // Make sure the element with with id="quizzes-container" has no text inside it
@@ -41,7 +66,39 @@ $(document).ready(function() {
     }
   };
 
+  const renderMyQuizzes = (quizzes) => {
+    // console.log(quizzes)
+    const container = $('#user-quizzes-container');
+    container.empty(); // Make sure the element with with id="user-quizzes-container" has no text inside it
 
+    for (let quizData of quizzes.quizzes) {
+      const $quiz = createMyQuizElement(quizData);
+      container.prepend($quiz); // To add it to the page by prepending it inside element with id="user-quizzes-container"
+    }
+
+  };
+
+  const renderRecentQuizzes = (results) => {
+    const container = $('#recent-results-container');
+    for (let resultData of results.results) {
+      const $result = createRecentResultsElement(resultData);
+      container.prepend($result)
+    };
+  };
+
+  const loadRecentResults = () => {
+    $.ajax({
+      method: 'GET',
+      url: '/api/recentResults',
+      success: function(data) {
+        renderRecentQuizzes(data)
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  };
+  loadRecentResults();
 
   const loadQuizzes = () => {
     $.ajax({
@@ -57,6 +114,32 @@ $(document).ready(function() {
   };
 
   loadQuizzes();
+
+  const loadMyQuizzes = () => {
+    $.ajax({
+      method: 'GET',
+      url: '/api/myQuizzes',
+      success: function(data) {
+        renderMyQuizzes(data);
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+  };
+  loadMyQuizzes()
+
+  $('#user-quizzes-container').on("click", "button.make-public", (event)=>{
+    const quiz_id = $(event.target).data("quiz-id")
+    // console.log("toggling", quiz_id);
+    $.ajax({
+      method: 'PATCH',
+      url:`/api/myQuizzes/${quiz_id}/toggle`
+    }) .then(()=>{
+      loadMyQuizzes();
+      loadQuizzes();
+    })
+  })
 
   let questionTotal = 0;
 
