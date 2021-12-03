@@ -36,9 +36,18 @@
       <section class="text-center">
         <div class="card-header"></div>
         <div class="card-body">
-          <p class="card-title">Share your quiz result for<%= quizName %></p>
+
+          <% if (user === quizTakerID) { %>
+            <p class="card-title">Share your quiz result for <%= quizName %></p>
+          <% } else { %>
+            <p class="card-title">Share the quiz result for <%= quizName %> taken by <%= quizTaker %></p>
+          <% } %>
           <p class="card-text">Quiz result link: <a href="/results/<%= shortURL %>">localhost:8080/results/<%= shortURL %></a></p>
-          <p class="card-text">You answered correctly for <%= numberOfcorrect %> out of <%= total %>!</p>
+          <% if (user === quizTakerID) { %>
+            <p class="card-text">You answered correctly for <%= numberOfcorrect %> out of <%= total %>!</p>
+          <% } else { %>
+            <p class="card-text"><%= quizTaker %> answered correctly for <%= numberOfcorrect %> out of <%= total %>!</p>
+          <% } %>
         </div>
         <div class="card-footer text-muted"></div>
       </section>
