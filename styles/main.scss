@@ -10,7 +10,7 @@ main {
   min-height: 76vh;
 }
 
-#quizzes-container {
+#quizzes-container, #user-quizzes-container {
   width: 100%;
 }
 
@@ -21,6 +21,15 @@ main {
   border: solid 1px;
   border-radius: 10px;
   width: 95%;
+}
+
+#take-quiz-container {
+  background-color: partial.$color-quiz-background;
+  margin: 1em 0em 1em 0.4em;
+  padding: 0.7em;
+  border: solid 1px;
+  border-radius: 10px;
+  width: 86%;
 }
 
 .create-quiz {
@@ -36,6 +45,7 @@ textarea {
 h1 {
   display: flex;
   justify-content: center;
+  font-size: 1.5em;
 }
 
 .public-quiz-title, .create-quiz-title {
@@ -52,11 +62,20 @@ h1 {
   main {
     margin-top: 110px;
   }
+
+  #take-quiz-container {
+    width: 50%;
+    padding: 1em 3em;
+  }
+
+  h1 {
+  font-size: 2em;
+}
 }
 
 // For desktop
 @media screen and (min-width: 1024px) {
-  #quizzes-container, .public-quiz-container {
+  #quizzes-container, .public-quiz-container, #user-quizzes-container {
     width: 70%;
   }
 }
