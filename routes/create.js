@@ -7,7 +7,7 @@ const router  = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     const templateVars = {
-      user: req.session.user_id
+      cookieUser: req.session.user_id
     };
     res.render("create_quiz", templateVars);
   })
