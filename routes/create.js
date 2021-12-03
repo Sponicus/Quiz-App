@@ -43,7 +43,7 @@ module.exports = (db) => {
           console.log(err.stack)
         }
       ;
-      res.redirect("/");
+      res.redirect("/prev");
     } catch (err) {
       console.log(err.stack)
       res.send('something went wrong!!! :(')
