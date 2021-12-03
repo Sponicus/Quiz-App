@@ -34,6 +34,8 @@ module.exports = (db) => {
             const noOfQuestions = data.rows[0];
 
             const templateVars = {
+              user: user,
+              quizTaker: newestQuizResult.user_id,
               quizName: newestQuizResult.name,
               shortURL: newestQuizResult.short_url,
               resultID: newestQuizResult.id,
