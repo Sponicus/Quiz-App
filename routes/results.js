@@ -9,19 +9,20 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
+  router.get("/:shortURL", (req, res) => {
     let newestQuizResult;
-    const user = req.session.user_id; // THIS IS CORRECT AND USE AS REFERENCE ON OTHER PAGES
+    const shortURL = req.params.shortURL; // THIS IS CORRECT AND USE AS REFERENCE ON OTHER PAGES
+    const user = req.session.user_id;
 
     db.query(
-      `SELECT results.*, quizzes.name
+      `SELECT results.*, quizzes.name, users.name AS username
       FROM results
       JOIN quizzes ON quizzes.id = quiz_id
       JOIN users ON users.id = user_id
-      WHERE results.user_id = $1
+      WHERE results.short_url = $1
       ORDER BY results.id DESC
       LIMIT 1;`
-      ,[user])
+      ,[shortURL])
       .then(quizRes => {
         newestQuizResult = quizRes.rows[0];
 
@@ -35,7 +36,8 @@ module.exports = (db) => {
 
             const templateVars = {
               user: user,
-              quizTaker: newestQuizResult.user_id,
+              quizTakerID: newestQuizResult.user_id,
+              quizTaker: newestQuizResult.username,
               quizName: newestQuizResult.name,
               shortURL: newestQuizResult.short_url,
               resultID: newestQuizResult.id,
@@ -43,6 +45,7 @@ module.exports = (db) => {
               total: noOfQuestions.count
             };
 
+            console.log('templateVars is following:', templateVars);
             res.render("quiz_result", templateVars);
           })
           .catch(err => {
