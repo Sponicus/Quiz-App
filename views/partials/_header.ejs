@@ -6,7 +6,7 @@
     </div>
     <div class="navbar-pages">
       <div class="navbar-right">
-        <% if(user){ %>
+        <% if(cookieUser){ %>
           <form class="user" method="POST" action="/logout">
             <p>Logged in</p>
             <button type="submit" class="btn btn-danger">Logout</button>
@@ -18,7 +18,7 @@
           </div>
         <% } %>
       </div>
-      <% if(user){ %>
+      <% if(cookieUser){ %>
         <div class="my-quizzes">
           <a href="/"><span class="fas fa-home"></span></a>
           <a href="/create">Create quiz</a>
