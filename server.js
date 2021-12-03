@@ -63,7 +63,7 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/questions", questionsRoutes(db));
 app.use("/api/answers", answersRoutes(db));
 app.use("/api/results", resultsRoutes(db));
-app.use("/results/:id", resultsRoutes(db));
+app.use("/results", resultsRoutes(db));
 app.use("/api/quizzes", quizzesRoutes(db));
 //app.use("/take/:id",)
 app.use("/submitResult", submitQuizResult(db));
