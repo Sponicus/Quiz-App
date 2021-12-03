@@ -24,9 +24,6 @@ module.exports = (db) => {
       ,[user])
       .then(quizRes => {
         newestQuizResult = quizRes.rows[0];
-        console.table(quizRes.rows);
-        console.log('newestQuizResult is the following:', quizRes.rows[0])
-
 
         let query2 = `SELECT COUNT(questions.id) FROM questions
         JOIN quizzes ON quizzes.id = quiz_id
