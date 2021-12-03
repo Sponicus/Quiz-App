@@ -44,7 +44,7 @@
           <% } %>
           <p class="card-text">Quiz result link: <a href="/results/<%= shortURL %>">localhost:8080/results/<%= shortURL %></a></p>
           <% if (user === quizTakerID) { %>
-            <p class="card-text">You answered correctly for <%= numberOfcorrect %> out of <%= total %>!</p>
+            <p class="card-text">You answered correctly for <%= numberOfcorrect %> out of <%= total %> questions!</p>
           <% } else { %>
             <p class="card-text"><%= quizTaker %> answered correctly for <%= numberOfcorrect %> out of <%= total %>!</p>
           <% } %>
