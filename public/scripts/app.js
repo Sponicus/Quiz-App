@@ -47,7 +47,7 @@ $(document).ready(function() {
 
   const createRecentResultsElement = (results) => {
     return `
-      <article class="single-quiz">
+      <article class="single-result">
         <form method="GET" action="/api/${results.quiz_id}">
         <p>${results.name}</p>
         <p>${results.score}%</p>
