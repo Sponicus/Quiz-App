@@ -3,17 +3,18 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    const user = req.session.user_id;
-    let query = `
+    const user = req.session.user_id
+    console.log(user);
+    let query = (`
     SELECT quizzes.name, (100*results.total_correct/test1.total_questions) as score
     FROM results
     JOIN (SELECT quiz_id, count(questions.*) as total_questions FROM questions GROUP BY quiz_id) test1 ON results.quiz_id = test1.quiz_id
     JOIN quizzes ON quizzes.id = results.quiz_id
+    JOIN users ON users.id = results.user_id
     WHERE results.user_id = $1
-    ORDER BY results.id DESC
+    ORDER BY results.id
     LIMIT 3;
-    `, [user];
-    console.log(query);
+    `, [user])
     db.query(query)
       .then(data => {
         const results = data.rows;
@@ -28,30 +29,4 @@ module.exports = (db) => {
   return router;
 };
 
-//
-//////////////////////////////QUERIES////////////////////////
-`
-SELECT quizzes.name, (100*results.total_correct/test1.total_questions) as score
-FROM results
-JOIN (SELECT quiz_id, count(questions.*) as total_questions FROM questions GROUP BY quiz_id) test1 ON results.quiz_id = test1.quiz_id
-JOIN quizzes ON quizzes.id = results.quiz_id
-WHERE results.user_id = 2;
-`
-
-`
-SELECT quizzes.name, results.total_correct
-FROM results
-JOIN quizzes ON quizzes.id = quiz_id
-WHERE user_id = 2;
-`
-
-//////////////////////////AMBIGUOUS//////////////////////////
-
-
-`
-SELECT quizzes.name, results.total_correct
-FROM results
-JOIN quizzes ON quizzes.id = quiz_id
-WHERE user_id = 2;
-`
 
