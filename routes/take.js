@@ -49,7 +49,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
 
-      //res.redirect(`/`);
       res.redirect(`/results/${genShortURL}`);
   });
 
