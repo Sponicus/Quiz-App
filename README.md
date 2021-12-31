@@ -1,17 +1,25 @@
 Quizzle Quiz App
 =========
 
-Full stack web app built in 6 days as the midterm group project. The app lets you create and take quizzes as well as share your quiz results with friends. Users can make their created quizzes public which appears on the home page of all users or private.
+Full stack web app built in 6 days as the midterm group project (85% completed). The app lets you create and take quizzes as well as share your quiz results with friends. Users can make their created quizzes public which appears on the home page of all users or private.
 
 ## Final Product
 
-!["screenshot of ..."]()
+!["Screenshot of the home page"]()
 
-!["screenshot of ..."]()
+!["Screenshot of the trivia quiz"]()
 
-!["screenshot of ..."]()
+!["Screenshot of your trivia quiz results"]()
 
-!["screenshot of ..."]()
+!["Screenshot of your friend's trivia quiz results"]()
+
+!["Screenshot of the create quiz page"]()
+
+!["Screenshot of my quizzes page"]()
+
+!["Screenshot of the Spider-Man quiz"]()
+
+!["Screenshot of mobile view of the home page"]()
 
 ## Getting Started
 
