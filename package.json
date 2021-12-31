@@ -1,7 +1,7 @@
 {
-  "name": "node-skeleton",
+  "name": "quizzle-quiz-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Quizzle is an app that lets you create and take quizzes as well as share your quiz results with friends",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,11 @@
     "db:reset": "node bin/resetdb.js",
     "sass-watch": "sass styles:public/styles --watch --poll --no-source-map"
   },
-  "author": "Lighthouse Labs",
+  "contributors": [
+    "Timothy Chan (@timothy-chan2)",
+    "Andrew Spon (@Sponicus)",
+    "Lighthouse Labs"
+  ],
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
