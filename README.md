@@ -5,21 +5,23 @@ Full stack web app built in 6 days as the midterm group project (85% completed).
 
 ## Final Product
 
-!["Screenshot of the home page"]()
+!["Screenshot of the home page"](https://github.com/Sponicus/Quiz-App/blob/feature/readme/docs/home-page.png?raw=true)
 
-!["Screenshot of the trivia quiz"]()
+!["Screenshot of the trivia quiz"](https://github.com/Sponicus/Quiz-App/blob/feature/readme/docs/trivia-quiz.png?raw=true)
 
-!["Screenshot of your trivia quiz results"]()
+!["Screenshot of your trivia quiz results"](https://github.com/Sponicus/Quiz-App/blob/feature/readme/docs/trivia-results.png?raw=true)
 
-!["Screenshot of your friend's trivia quiz results"]()
+!["Screenshot of your friend's trivia quiz results"](https://github.com/Sponicus/Quiz-App/blob/feature/readme/docs/trivia-results-logged-out.png?raw=true)
 
-!["Screenshot of the create quiz page"]()
+!["Screenshot of the create quiz page"](https://github.com/Sponicus/Quiz-App/blob/feature/readme/docs/create-spider-man-quiz.png?raw=true)
 
-!["Screenshot of my quizzes page"]()
+!["Screenshot of my quizzes page"](https://github.com/Sponicus/Quiz-App/blob/feature/readme/docs/my-quizzes.png?raw=true)
 
-!["Screenshot of the Spider-Man quiz"]()
+!["Screenshot of the Spider-Man quiz"](https://github.com/Sponicus/Quiz-App/blob/feature/readme/docs/spider-man-quiz.png?raw=true)
 
-!["Screenshot of mobile view of the home page"]()
+<p align="center">
+  <img src="https://github.com/Sponicus/Quiz-App/blob/feature/readme/docs/mobile-view.png?raw=true" width=50% height=50% alt="Screenshot of mobile view of the home page">
+</p>
 
 ## Getting Started
 
